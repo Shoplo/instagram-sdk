@@ -1,0 +1,27 @@
+{
+  "name": "shoplo/instagram-sdk",
+  "type": "library",
+  "description": "Instagram PHP Client",
+  "keywords": [
+    "shoplo",
+    "instagram"
+  ],
+  "homepage": "https://github.com/Shoplo/instagram-sdk",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.2",
+    "symfony/serializer": "^4.3",
+    "symfony/property-access": "^4.3"
+  },
+  "require-dev": {
+    "symfony/http-client": "^4.3"
+  },
+  "suggest": {
+    "symfony/http-client": "For HttpClientAdapter"
+  },
+  "autoload": {
+    "psr-4": {
+      "Shoplo\\Instagram\\": "src/Shoplo/Instagram"
+    }
+  }
+}
