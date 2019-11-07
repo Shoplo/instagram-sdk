@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class InstagramClient
 {
-    const API_BASE_URI = 'https://graph.facebook.com/v5.0/';
+    public const API_BASE_URI = 'https://graph.facebook.com/v5.0/';
 
     /** @var InstagramAdapterInterface */
     public $requestAdapter;
@@ -16,11 +16,6 @@ class InstagramClient
     /** @var SerializerInterface */
     public $serializer;
 
-    /**
-     * InstagramClient constructor.
-     * @param InstagramAdapterInterface $requestAdapter
-     * @param SerializerInterface $serializer
-     */
     public function __construct(InstagramAdapterInterface $requestAdapter, SerializerInterface $serializer)
     {
         $this->requestAdapter = $requestAdapter;
@@ -47,15 +42,5 @@ class InstagramClient
         }
 
         return $this->serializer->deserialize($response, $type, 'json');
-    }
-
-    public function post(string $url, $data, array $headers = [])
-    {
-        return $this->requestAdapter->post($url, $this->serializer->serialize($data, 'json'), $headers);
-    }
-
-    public function delete(string $url)
-    {
-        return $this->requestAdapter->delete($url);
     }
 }
