@@ -10,11 +10,9 @@ class InstagramClient
 {
     public const API_BASE_URI = 'https://graph.facebook.com/v5.0/';
 
-    /** @var InstagramAdapterInterface */
-    public $requestAdapter;
+    private $requestAdapter;
 
-    /** @var SerializerInterface */
-    public $serializer;
+    private $serializer;
 
     public function __construct(InstagramAdapterInterface $requestAdapter, SerializerInterface $serializer)
     {
@@ -33,12 +31,12 @@ class InstagramClient
         $implements = class_implements($type);
 
         if (isset($implements['IteratorAggregate'])) {
-            $response = json_decode($response, true);
-            if (isset ($response['business_discovery']['media']['data'])) {
+            $response = \json_decode($response, true);
+            if (isset($response['business_discovery']['media']['data'])) {
                 $response['paging'] = $response['business_discovery']['media']['paging'] ?? [];
                 $response['items'] = $response['business_discovery']['media']['data'];
             }
-            $response = json_encode($response);
+            $response = \json_encode($response);
         }
 
         return $this->serializer->deserialize($response, $type, 'json');
