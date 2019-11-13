@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shoplo\Instagram;
+namespace Shoplo\Instagram\Serializer;
 
 use Shoplo\Instagram\Model\Media\MediaCollectionResponse;
 use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
