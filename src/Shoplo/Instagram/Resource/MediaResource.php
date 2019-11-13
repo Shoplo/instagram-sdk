@@ -9,23 +9,18 @@ use Shoplo\Instagram\Model\Media\MediaCollectionResponse;
 
 class MediaResource
 {
-    /** @var InstagramClient */
     private $getResponseClient;
 
-    /**
-     * CallbackResource constructor.
-     * @param InstagramClient $InstagramClient
-     */
     public function __construct(InstagramClient $InstagramClient)
     {
         $this->getResponseClient = $InstagramClient;
     }
 
-    private function getMediaUrl($accountId, $username, $limit = 50, $after = null)
+    private function getMediaUrl(string $accountId, string $username, int $limit = 50, $after = null): string
     {
         if (null !== $after) {
             return sprintf(
-                '%s?fields=business_discovery.username(%s){followers_count,media.limit(%s).after(%s){comments_count,like_count,caption,media_url,media_type,children{media_type,media_url}}}',
+                '%s?fields=business_discovery.username(%s){followers_count,media.limit(%s).after(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,children{media_type,media_url}}}',
                 $accountId,
                 $username,
                 $limit,
@@ -34,7 +29,7 @@ class MediaResource
         }
 
         return sprintf(
-            '%s?fields=business_discovery.username(%s){followers_count,media.limit(%s){comments_count,like_count,caption,media_url,media_type,children{media_type,media_url}}}',
+            '%s?fields=business_discovery.username(%s){followers_count,media.limit(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,children{media_type,media_url}}}',
             $accountId,
             $username,
             $limit
