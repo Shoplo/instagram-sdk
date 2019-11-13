@@ -28,17 +28,6 @@ class InstagramClient
             $headers
         );
 
-        $implements = class_implements($type);
-
-        if (isset($implements['IteratorAggregate'])) {
-            $response = \json_decode($response, true);
-            if (isset($response['business_discovery']['media']['data'])) {
-                $response['paging'] = $response['business_discovery']['media']['paging'] ?? [];
-                $response['items'] = $response['business_discovery']['media']['data'];
-            }
-            $response = \json_encode($response);
-        }
-
         return $this->serializer->deserialize($response, $type, 'json');
     }
 }
