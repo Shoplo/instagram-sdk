@@ -5,14 +5,22 @@ declare(strict_types=1);
 namespace Shoplo\Instagram\Serializer;
 
 use Shoplo\Instagram\Model\Media\MediaCollectionResponse;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class MediaCollectionDenormalizer extends ObjectNormalizer implements CacheableSupportsMethodInterface
+class MediaCollectionDenormalizer implements DenormalizerInterface
 {
+    private $normalizer;
+
+    public function __construct(ObjectNormalizer $normalizer)
+    {
+        $this->normalizer = $normalizer;
+    }
+
     public function denormalize($data, $class, $format = null, array $context = [])
     {
-        $return = $data;
+        $return = [];
+
         if (isset($data['business_discovery']['media']['data'])) {
             $return['paging'] = $data['business_discovery']['media']['paging'] ?? [];
             $return['items'] = $data['business_discovery']['media']['data'];
@@ -20,17 +28,11 @@ class MediaCollectionDenormalizer extends ObjectNormalizer implements CacheableS
             $return['items'] = $data['data'];
         }
 
-        return parent::denormalize($return, $class, $format, $context);
-
+        return $this->normalizer->denormalize($return, $class);
     }
 
     public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === MediaCollectionResponse::class;
-    }
-
-    public function hasCacheableSupportsMethod(): bool
-    {
-        return __CLASS__ === \get_class($this);
     }
 }
