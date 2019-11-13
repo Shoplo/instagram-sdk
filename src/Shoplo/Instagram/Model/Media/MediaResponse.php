@@ -52,7 +52,7 @@ class MediaResponse
     public $thumbnailUrl;
 
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     public $timestamp;
 }
