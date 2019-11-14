@@ -16,7 +16,7 @@ class BaseCollectionResponse implements \IteratorAggregate
      */
     public $items;
 
-    public function addItem($obj, $key = null)
+    public function addItem($obj, $key = null): void
     {
         if ($key === null) {
             $this->items[] = $obj;
@@ -28,7 +28,7 @@ class BaseCollectionResponse implements \IteratorAggregate
         }
     }
 
-    public function deleteItem($key)
+    public function deleteItem($key): void
     {
         if (isset($this->items[$key])) {
             unset($this->items[$key]);
@@ -44,23 +44,23 @@ class BaseCollectionResponse implements \IteratorAggregate
         throw new \Exception("Invalid key $key.");
     }
 
-    public function keys()
+    public function keys(): array
     {
-        return array_keys($this->items);
+        return \array_keys($this->items);
     }
 
-    public function length()
+    public function length(): int
     {
-        return count($this->items);
+        return \count($this->items);
     }
 
-    public function keyExists($key)
+    public function keyExists($key): bool
     {
         return isset($this->items[$key]);
     }
 
-    public function getIterator()
+    public function getIterator(): \Iterator
     {
-        return $this->items;
+        return new \ArrayIterator($this->items);
     }
 }
