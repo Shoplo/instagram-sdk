@@ -14,10 +14,18 @@ class InstagramClient
 
     private $serializer;
 
-    public function __construct(InstagramAdapterInterface $requestAdapter, SerializerInterface $serializer)
+    /** @var string */
+    public $appId;
+
+    /** @var string */
+    public $appSecret;
+
+    public function __construct(InstagramAdapterInterface $requestAdapter, SerializerInterface $serializer, string $appId, string $appSecret)
     {
         $this->requestAdapter = $requestAdapter;
         $this->serializer = $serializer;
+        $this->appId = $appId;
+        $this->appSecret = $appSecret;
     }
 
     public function get(string $type, string $url, array $parameters = [], array $headers = [])
