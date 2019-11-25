@@ -9,15 +9,15 @@ class TokenResponse
     /**
      * @var string
      */
-    public $access_token;
+    public $accessToken;
 
     /**
      * @var string
      */
-    public $token_type;
+    public $tokenType;
 
     /**
      * @var integer
      */
-    public $expires_in;
+    public $expiresIn;
 }
