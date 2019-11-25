@@ -6,6 +6,8 @@ namespace Shoplo\Instagram\Model\Media;
 
 class MediaResponse
 {
+    public const TYPE_VIDEO = 'VIDEO';
+
     /**
      * @var string
      */
