@@ -20,7 +20,7 @@ class MediaResource
     {
         if (null !== $after) {
             return sprintf(
-                '%s?fields=business_discovery.username(%s){followers_count,media.limit(%s).after(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,children{media_type,media_url}}}',
+                '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,media.limit(%s).after(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
                 $accountId,
                 $username,
                 $limit,
@@ -29,7 +29,7 @@ class MediaResource
         }
 
         return sprintf(
-            '%s?fields=business_discovery.username(%s){followers_count,media.limit(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,children{media_type,media_url}}}',
+            '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,media.limit(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
             $accountId,
             $username,
             $limit

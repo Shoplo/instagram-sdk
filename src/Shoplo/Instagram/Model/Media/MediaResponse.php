@@ -57,4 +57,14 @@ class MediaResponse
      * @var \DateTimeInterface
      */
     public $timestamp;
+
+    /**
+     * @var string
+     */
+    public $username;
+
+    /**
+     * @var string
+     */
+    public $avatarUrl;
 }
