@@ -28,7 +28,7 @@ $httpClient = new ScopingHttpClient(
 
 $httpAdapter = new \Shoplo\Instagram\HttpClient\HttpClientAdapter($httpClient, $accessToken);
 $encoders = [new JsonEncoder()];
-$normalizers = [new ObjectNormalizer(), new \Shoplo\Instagram\MediaCollectionDenormalizer()];
+$normalizers = [new ObjectNormalizer(), new \Shoplo\Instagram\MediaCollectionDenormalizer(), new \Shoplo\Instagram\MediaDenormalizer()];
 
 $serializer = new Serializer($normalizers, $encoders);
 $client = new \Shoplo\Instagram\InstagramClient($httpAdapter, $serializer);
