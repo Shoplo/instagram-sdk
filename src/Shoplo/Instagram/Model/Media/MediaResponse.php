@@ -49,7 +49,7 @@ class MediaResponse
     public $permalink;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $thumbnailUrl;
 
