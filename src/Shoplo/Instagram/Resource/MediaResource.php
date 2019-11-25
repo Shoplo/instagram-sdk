@@ -9,11 +9,11 @@ use Shoplo\Instagram\Model\Media\MediaCollectionResponse;
 
 class MediaResource
 {
-    private $getResponseClient;
+    private $instagramClient;
 
     public function __construct(InstagramClient $InstagramClient)
     {
-        $this->getResponseClient = $InstagramClient;
+        $this->instagramClient = $InstagramClient;
     }
 
     private function getMediaUrl(string $accountId, string $username, int $limit = 50, $after = null): string
@@ -38,7 +38,7 @@ class MediaResource
 
     public function getMedia(string $accountId, string $username, $limit = 50, $after = null): MediaCollectionResponse
     {
-        return $this->getResponseClient->get(
+        return $this->instagramClient->get(
             MediaCollectionResponse::class,
             $this->getMediaUrl($accountId, $username, $limit, $after)
         );

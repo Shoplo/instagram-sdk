@@ -10,7 +10,7 @@ use Shoplo\Instagram\Model\Token\TokenResponse;
 class TokenResource
 {
     /** @var InstagramClient */
-    private $getResponseClient;
+    private $instagramClient;
 
     /**
      * CallbackResource constructor.
@@ -18,22 +18,22 @@ class TokenResource
      */
     public function __construct(InstagramClient $InstagramClient)
     {
-        $this->getResponseClient = $InstagramClient;
+        $this->instagramClient = $InstagramClient;
     }
 
     private function getExtendTokenUrl(string $exchangeToken)
     {
         return sprintf(
             '/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s',
-            $this->getResponseClient->appId,
-            $this->getResponseClient->appSecret,
+            $this->instagramClient->appId,
+            $this->instagramClient->appSecret,
             $exchangeToken
         );
     }
 
     public function exchangeToken(string $exchangeToken): TokenResponse
     {
-        return $this->getResponseClient->get(
+        return $this->instagramClient->get(
             TokenResponse::class,
             $this->getExtendTokenUrl($exchangeToken)
         );
