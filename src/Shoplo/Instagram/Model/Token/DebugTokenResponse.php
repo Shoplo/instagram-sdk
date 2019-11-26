@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Shoplo\Instagram\Model\Token;
 
-class TokenResponse
+class DebugTokenResponse
 {
     /**
      * @var string
      */
-    public $accessToken;
+    public $type;
 
     /**
-     * @var string
+     * @var integer
      */
-    public $tokenType;
+    public $dataAccessExpiresAt;
 
     /**
-     * @var integer|null
+     * @var integer
      */
-    public $expiresIn;
+    public $expiresAt;
 }
