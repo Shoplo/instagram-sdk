@@ -64,7 +64,7 @@ class MediaResponse
     public $username;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $avatarUrl;
 }

@@ -26,7 +26,7 @@ class MediaCollectionDenormalizer implements DenormalizerInterface
             $return['items'] = $data['business_discovery']['media']['data'];
 
             $return['items'] = \array_map(function(array $mediaData) use ($data) {
-                $mediaData['avatar_url'] = $data['business_discovery']['profile_picture_url'];
+                $mediaData['avatar_url'] = $data['business_discovery']['profile_picture_url'] ?? null;
 
                 return $mediaData;
             }, $return['items']);
