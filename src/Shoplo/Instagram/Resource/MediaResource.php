@@ -6,6 +6,7 @@ namespace Shoplo\Instagram\Resource;
 
 use Shoplo\Instagram\InstagramClient;
 use Shoplo\Instagram\Model\Media\MediaCollectionResponse;
+use Shoplo\Instagram\Model\Media\MediaIdCollectionResponse;
 
 class MediaResource
 {
@@ -20,7 +21,7 @@ class MediaResource
     {
         if (null !== $after) {
             return sprintf(
-                '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,media.limit(%s).after(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
+                '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,media.limit(%s).after(%s){ig_id,comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
                 $accountId,
                 $username,
                 $limit,
@@ -29,10 +30,18 @@ class MediaResource
         }
 
         return sprintf(
-            '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,media.limit(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
+            '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,ig_id,media.limit(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
             $accountId,
             $username,
             $limit
+        );
+    }
+
+    public function getMediaIds(string $accountId, $limit = 50): MediaIdCollectionResponse
+    {
+        return $this->instagramClient->get(
+            MediaIdCollectionResponse::class,
+            sprintf('%s/media?fields=id,ig_id&limit=%d', $accountId, $limit)
         );
     }
 
