@@ -17,22 +17,20 @@ class MediaResource
         $this->instagramClient = $InstagramClient;
     }
 
-    private function getMediaUrl(string $accountId, string $username, int $limit = 50, $after = null): string
+    private function getMediaUrl(string $accountId, int $limit = 50, $after = null): string
     {
         if (null !== $after) {
             return sprintf(
-                '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,media.limit(%s).after(%s){ig_id,comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
+            '%s/media?limit=%s&after=%s&fields=ig_id,comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}',
                 $accountId,
-                $username,
                 $limit,
                 $after
             );
         }
 
         return sprintf(
-            '%s?fields=business_discovery.username(%s){followers_count,profile_picture_url,ig_id,media.limit(%s){comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}}}',
+            '%s/media?limit=%s&fields=ig_id,comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}',
             $accountId,
-            $username,
             $limit
         );
     }
@@ -45,11 +43,11 @@ class MediaResource
         );
     }
 
-    public function getMedia(string $accountId, string $username, $limit = 50, $after = null): MediaCollectionResponse
+    public function getMedia(string $accountId, $limit = 50, $after = null): MediaCollectionResponse
     {
         return $this->instagramClient->get(
             MediaCollectionResponse::class,
-            $this->getMediaUrl($accountId, $username, $limit, $after)
+            $this->getMediaUrl($accountId, $limit, $after)
         );
     }
 }

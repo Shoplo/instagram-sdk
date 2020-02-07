@@ -15,4 +15,9 @@ class UserResponse
      * @var string|null
      */
     public $biography;
+
+    /**
+     * @var string|null
+     */
+    public $profilePictureUrl;
 }

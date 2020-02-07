@@ -19,7 +19,7 @@ class UserResource
     private function getUserUrl(string $accountId): string
     {
         return \sprintf(
-            '%s?fields=id,biography',
+            '%s?fields=id,biography,profile_picture_url',
             $accountId
         );
     }

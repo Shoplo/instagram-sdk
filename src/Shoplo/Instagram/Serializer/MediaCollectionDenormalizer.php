@@ -21,16 +21,7 @@ class MediaCollectionDenormalizer implements DenormalizerInterface
     {
         $return = [];
 
-        if (isset($data['business_discovery']['media']['data'])) {
-            $return['paging'] = $data['business_discovery']['media']['paging'] ?? [];
-            $return['items'] = $data['business_discovery']['media']['data'];
-
-            $return['items'] = \array_map(function(array $mediaData) use ($data) {
-                $mediaData['avatar_url'] = $data['business_discovery']['profile_picture_url'] ?? null;
-
-                return $mediaData;
-            }, $return['items']);
-        } elseif (\array_key_exists('data', $data)) {
+        if (\array_key_exists('data', $data)) {
             $return['items'] = $data['data'];
         }
 
