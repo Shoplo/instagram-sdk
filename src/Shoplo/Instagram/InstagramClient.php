@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class InstagramClient
 {
-    public const API_BASE_URI = 'https://graph.facebook.com/v5.0/';
+    public const API_BASE_URI = 'https://graph.facebook.com/v7.0/';
 
     private $requestAdapter;
 
