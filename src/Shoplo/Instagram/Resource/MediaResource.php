@@ -21,7 +21,7 @@ class MediaResource
     {
         if (null !== $after) {
             return sprintf(
-            '%s/media?limit=%s&after=%s&fields=ig_id,comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}',
+            '%s/media?limit=%s&after=%s&fields=ig_id,comments_count,like_count,caption,media_url,thumbnail_url,permalink,timestamp,media_type,username,children{media_type,media_url,thumbnail_url}',
                 $accountId,
                 $limit,
                 $after
@@ -29,7 +29,7 @@ class MediaResource
         }
 
         return sprintf(
-            '%s/media?limit=%s&fields=ig_id,comments_count,like_count,caption,media_url,permalink,timestamp,media_type,username,children{media_type,media_url}',
+            '%s/media?limit=%s&fields=ig_id,comments_count,like_count,caption,media_url,thumbnail_url,permalink,timestamp,media_type,username,children{media_type,media_url,thumbnail_url}',
             $accountId,
             $limit
         );

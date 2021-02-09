@@ -22,10 +22,6 @@ class MediaDenormalizer implements DenormalizerInterface
         /** @var MediaResponse $mediaResponse */
         $mediaResponse = $this->normalizer->denormalize($data, $class);
 
-        if ($mediaResponse->mediaType === MediaResponse::TYPE_VIDEO) {
-            $mediaResponse->thumbnailUrl = $mediaResponse->permalink . 'media/?size=l';
-        }
-
         return $mediaResponse;
     }
 
